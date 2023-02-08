@@ -44,17 +44,6 @@ h2_ppm_structure = {
     }
 }
 
-alcohol_ppm_structure = {
-    'measurement': 'alcohol',
-    'tags': {
-        'sensor': 'MQ-135',
-        'software_version': '0.01'
-    },
-    'time': None,
-    'fields': {
-        'value': None
-    }
-}
 co2_ppm_structure = {
     'measurement': 'co2',
     'tags': {
@@ -66,17 +55,7 @@ co2_ppm_structure = {
         'value': None
     }
 }
-nh4_ppm_structure = {
-    'measurement': 'nh4',
-    'tags': {
-        'sensor': 'MQ-135',
-        'software_version': '0.01'
-    },
-    'time': None,
-    'fields': {
-        'value': None
-    }
-}
+
 co_ppm_structure = {
     'measurement': 'co',
     'tags': {
@@ -105,10 +84,8 @@ if __name__ == '__main__':
                         h2_ppm = float(data[0])
                         temperature_c = float(data[1])
                         humidity = float(data[2])
-                        alcohol = float(data[3])
-                        co2 = float(data[4])
-                        nh4 = float(data[5])
-                        co = float(data[6])
+                        co2 = float(data[3])
+                        co = float(data[4])
                         timepoint = int(time.time())
                         time_precision='s'
                         temperature_structure['time'] = timepoint
@@ -117,15 +94,11 @@ if __name__ == '__main__':
                         humidity_structure['fields']['value'] = humidity
                         h2_ppm_structure['time'] = timepoint
                         h2_ppm_structure['fields']['value'] = h2_ppm
-                        alcohol_ppm_structure['time'] = timepoint
-                        alcohol_ppm_structure['fields']['value'] = alcohol
                         co2_ppm_structure['time'] = timepoint
                         co2_ppm_structure['fields']['value'] = co2
-                        nh4_ppm_structure['time'] = timepoint
-                        nh4_ppm_structure['fields']['value'] = nh4
                         co_ppm_structure['time'] = timepoint
                         co_ppm_structure['fields']['value'] = co
-                        influx_client.write_points([temperature_structure, humidity_structure, h2_ppm_structure, alcohol_ppm_structure, co2_ppm_structure, nh4_ppm_structure, co_ppm_structure], time_precision=time_precision)
+                        influx_client.write_points([temperature_structure, humidity_structure, h2_ppm_structure, co2_ppm_structure, co_ppm_structure], time_precision=time_precision)
             except Exception as e:
                 print(e)
                 time.sleep(1)
