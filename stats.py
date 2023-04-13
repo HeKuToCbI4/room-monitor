@@ -108,4 +108,5 @@ if __name__ == '__main__':
                     continue
                 time.sleep(1)
         except Exception as e:
+            time.sleep(1)
             print(f'Failed to load {DEVICE=} because of {e}')
