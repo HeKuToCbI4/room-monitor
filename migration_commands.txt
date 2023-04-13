@@ -3,12 +3,4 @@ create database telemetry
 create RETENTION POLICY week ON telemetry DURATION 1w REPLICATION 1 DEFAULT
 create RETENTION POLICY year_and_half ON telemetry DURATION 78w REPLICATION 1 DEFAULT
 
-CREATE CONTINUOUS QUERY downsamp_temperature_30m ON telemetry BEGIN SELECT mean('value') as mean_value INTO year_and_half.downsampled_temperature FROM temperature GROUP BY time(30m) END
-
-CREATE CONTINUOUS QUERY downsamp_humidity_30m ON telemetry BEGIN SELECT mean('value') as mean_value INTO year_and_half.downsampled_humidity FROM humidity GROUP BY time(30m) END
-
-CREATE CONTINUOUS QUERY downsamp_h2_ppm_30m ON telemetry BEGIN SELECT mean('value') as mean_value INTO year_and_half.downsampled_h2_ppm FROM h2_ppm GROUP BY time(30m) END
-
-CREATE CONTINUOUS QUERY downsamp_co2_30m ON telemetry BEGIN SELECT mean('value') as mean_value INTO year_and_half.downsampled_co2 FROM co2 GROUP BY time(30m) END
-
-CREATE CONTINUOUS QUERY downsamp_co_30m ON telemetry BEGIN SELECT mean('value') as mean_value INTO year_and_half.downsampled_co FROM co GROUP BY time(30m) END
+CREATE CONTINUOUS QUERY "downsamp_30m" ON "telemetry" BEGIN SELECT mean(*) INTO "telemetry"."year_and_half".:MEASUREMENT FROM "telemetry"."week"./.*/ GROUP BY time(30m) END
