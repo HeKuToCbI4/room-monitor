@@ -86,18 +86,19 @@ except Exception as e:
 def update_measurements(data: List[str], timepoint: int) -> List[SensorMeasurement]:
     """Update measurement objects with new data and timestamp."""
     try:
+        # 0.83|1.32|402.84|4.32|0.65|26.73|70.74|995.04|152.70|31.30
         h2_ppm.value = float(data[0])
         # data[1] is DHT22 temperature - replaced with AHT10
         # data[2] is DHT22 humidity - replaced with AHT10
-        alcohol_ppm.value = float(data[3])
-        co2_ppm.value = float(data[4])
-        nh4_ppm.value = float(data[5])
-        co_ppm.value = float(data[6])
-        temperature.value = float(data[7])  # AHT10 temperature
-        humidity.value = float(data[8])  # AHT10 humidity
-        pressure.value = float(data[9])
-        # data[10] is altitude - no need
-        # bmp_temperature.value = float(data[11]) - duplicate
+        alcohol_ppm.value = float(data[1])
+        co2_ppm.value = float(data[2])
+        nh4_ppm.value = float(data[3])
+        co_ppm.value = float(data[4])
+        temperature.value = float(data[5])  # AHT10 temperature
+        humidity.value = float(data[6])  # AHT10 humidity
+        pressure.value = float(data[7])
+        # data[8] is altitude - no need
+        # bmp_temperature.value = float(data[9]) - duplicate
 
         measurements = [
             temperature, humidity, h2_ppm, co2_ppm, co_ppm,
