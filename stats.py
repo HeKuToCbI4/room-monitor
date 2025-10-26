@@ -136,7 +136,7 @@ if __name__ == '__main__':
                         logger.debug(f'Raw data from arduino: {line}')
 
                         data = line.split('|')
-                        if len(data) >= 12:
+                        if len(data) >= 10:
                             timepoint = int(time.time())
                             measurements = update_measurements(data, timepoint)
 
